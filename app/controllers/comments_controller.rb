@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   before_filter :require_login, :except => [:create]
-  
+
   def create
     article_id = params[:comment].delete(:article_id)
 
@@ -9,6 +9,6 @@ class CommentsController < ApplicationController
 
     @comment.save
 
-    redirect_to article_path(@comment.article)
+    redirect_to article_path(@comment.article) #:notice => "Article failed validation."
   end
 end

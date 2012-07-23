@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   before_filter :require_login, :except => [:index, :show]
-  
+
   def index
     @articles = Article.all
   end
@@ -17,11 +17,12 @@ class ArticlesController < ApplicationController
     @article = Article.new(params[:article])
 
     @article.save
-
+    #render articles_path(@article)
     redirect_to article_path(@article)
   end
 
   def destroy
+    redirect_to login_path unless @author
     @article = Article.find(params[:id])
 
     @article.destroy
